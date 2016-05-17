@@ -1,0 +1,41 @@
+	ul,li{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.sort_ul{
+		border: 1px solid #ccc;
+		height: 200px;
+		width: 1000px;
+
+	}
+	.sort_li{
+		float: left;
+		width: 10px;
+		height: 100%;
+		margin-right: 3px;
+		position: relative;
+	}
+	.sort_span{
+		width: 100%;
+		display: block;
+		height: 50%;
+		background: #ddd;
+	}
+	.sort_span_blue{
+		background: black;
+	}
+	.sort_span_green{
+		background: green;
+	}
+	.sort_span_tag{
+		background: red;
+	}
+	.sort_span_in{
+		width: 100%;
+		display: block;
+		background: red;
+		position: absolute;
+		top: 0;
+
+	}

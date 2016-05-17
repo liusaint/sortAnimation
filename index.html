@@ -1,0 +1,83 @@
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript排序</title>
+	<link rel="stylesheet" href="css/sort.css">
+
+</head>
+
+<style>
+	form{
+		font-size: 12px;
+	}
+	.form-group{
+		margin-bottom: 10px;
+	}
+	.form-control{
+/*	line-height: 32px;
+height: 32px;*/
+}
+.num-input{
+	width: 600px;
+}
+</style>
+<form>
+	<div class="form-group">
+		<label for="arrLen">数组长度：</label>
+		<input name="arrLen" class="form-control" value = '50'>
+		<input value = '生成数组' id="createArr" type="button">
+	</div>
+	<div class="form-group">
+		<label for="arr">数组：</label><textarea name="arr" class="form-control num-input" rows="5">[66,78,90,22,64,18,86,32,19,60,28,24,23,17,67,82,57,89,33,11,76,43,79,5,42,99,14,95,68,51,4,77,91,83,27,21,84,72,8,30,71,52,20,94,80,29,81,26,39,53]</textarea>
+	</div>
+	<div class="form-group">
+		<label for="speed">速度：</label>
+		<input id="speedUp" value="加快" class="" type="button">
+		<input id="speedDown" value="减慢" class="" type="button">
+	</div>
+
+	<div class="form-group sortBtn">
+		<label for="arr">排序方式：</label>
+		<input id="bubble" value="冒泡排序" class="" type="button">
+		<input id="insert" value="插入排序" class="" type="button">
+		<input id="select" value="选择排序" class="" type="button">
+		<input id="quick" value="快速排序" class="" type="button">
+		<input id="quick2" value="快速排序2" class="" type="button">
+		<input id="merge" value="归并排序" class="" type="button">
+		<input id="shell" value="希尔排序" class="" type="button">
+	</div>
+
+</form>
+
+
+
+
+<ul class="sort_ul">
+<!-- 	<li class="sort_li"><span class="sort_span" style="height: 40%"></span></li>
+	<li class="sort_li"><span class="sort_span" style="height: 30%"></span></li>
+	<li class="sort_li"><span class="sort_span" style="height: 70%"></span></li>
+	<li class="sort_li"><span class="sort_span" style="height: 20%"></span>
+		<span class="sort_span_in " style="height: 10%"></span>
+	</li> -->
+</ul>
+<body>
+
+	<script>
+		var arr = [5,0,2,9,3,4,6,1,8];
+		var a = [9,8,7,6,5,4,3,2,1,0];
+		var c = [43,27,39,17,32,21,14,42,22,15,18,12,46,1,16,10,4,29,3,23,24,49,0,5,36,13,34,6,19,47,9,33,31,20,28,44,38,37,41,40,8,35,30,7,11,45,2,25,48,26];
+	</script>
+	<script src="http://apps.bdimg.com/libs/jquery/1.8.1/jquery.min.js"></script>
+
+	<script src="js/selectSort.js"></script>
+	<script src="js/insertSort.js"></script>
+	<script src="js/mergeSort.js"></script>
+	<script src="js/shellSort.js"></script>
+	<script src="js/quickSort.js"></script>
+	<script src="js/quickSort2.js"></script>
+	<script src="js/bubbleSort.js"></script>
+	<script src="js/animation.js"></script>
+</body>
+</html>
