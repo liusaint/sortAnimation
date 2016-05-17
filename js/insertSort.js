@@ -1,25 +1,42 @@
-		function insertSortDom(arr,a,b,temp){
-			$(".sort_ul").empty();
-			var html='',item= '';
-			$.each(arr, function(i, val) {
-				item = '<li class="sort_li"><span class="sort_span" style="height: '+val+'%"></span></li>';
-				html= html+item;
-			});
-			$(".sort_ul").append(html);
+
+/*
+*  arr:数组
+*  a:当前已完成排序的数量。排序循环中的i。
+*  b:当前在比较的位。循环中的j+1;
+*  temp:当前比较的值;
+*/
 
 
-			for (var i = 0; i <= a; i++) {
-				$(".sort_span").eq(i).addClass('sort_span_blue');
-			}
+function insertSortDom(arr,a,b,temp){
 
-			$(".sort_span").eq(b).parent().append('<span class="sort_span_in" style="height:'+temp+'%"></span>');
+	var html='<ul class="sort_ul">',item= '',spanClass='';
+	$.each(arr, function(i, val) {
+
+		spanClass = 'sort_span';
+
+		if(i<=a){
+			spanClass += ' sort_span_blue';
 		}
+
+		item = '<li class="sort_li"><span class="'+ spanClass +'" style="height: '+val+'%"></span></li>';
+
+		if(i == b){
+		item = 	'<li class="sort_li"><span class="'+ spanClass +'" style="height: '+val+'%"></span><span class="sort_span_in" style="height:'+temp+'%"></span></li>';
+		}
+		
+		html= html+item;
+	});
+	html += '</ul>';
+
+	$(".sort_ul").replaceWith(html);
+
+}
 
 
 
 //插入排序：
-function insertSort(arr){
-	var i,j,k,len=arr.length,temp,timeCount=1;
+function insertSort(oriArr){
+	var arr = oriArr.slice(),i,j,len=arr.length,temp;
 
 	for (i = 1; i < len; i++) {				
 		temp = arr[i];
