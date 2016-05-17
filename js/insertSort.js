@@ -49,7 +49,7 @@ function insertSort(oriArr){
 			}
 		}
 		arr[j+1] = temp;
-		this.pushHis(arr.slice(),i,j+1,temp);
+		this.pushHis(arr.slice(),i,j,temp);
 	}
 	return arr;
 }
