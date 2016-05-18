@@ -79,15 +79,15 @@ SortAnimation.prototype = {
 	},
 	changeSpeed:function(id){
 		if(id == 'speedUp'){
-			if(this.speed >30){
-				this.speed = this.speed - 10;
+			if(this.speed >=40){
+				this.speed = this.speed - 30;
 			}else{
 				return;
 			}
 		}
 		if(id == 'speedDown'){
 			if(this.speed < 500){
-				this.speed = this.speed + 10;
+				this.speed = this.speed + 30;
 			}else{
 				return;
 			}

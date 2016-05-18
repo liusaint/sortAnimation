@@ -1,81 +1,98 @@
 //快速排序。  给一个tag。比它小的放在左边的数组，比它大的放到右边的数组。然后左边数组和右边数组进行同样的操作，直到排序完成。 这是用的递归实现 。
 // a,b标记起始位
 
-function quickSort2(arr,a,b,backupArr){
+function quickSort2(arr,a,b,qArr){
 
-	var len = arr.length,leftArr=[],rightArr=[],tag;
+	var len = arr.length,leftArr=[],rightArr=[],tag,i,j,k,temp,len_l,len_r,lb,ra;
 	if(a == undefined && b == undefined){
 		a = 0; b= arr.length-1;//初始化起始位置。
 	}
-	if(backupArr == undefined){
-		backupArr = arr;
+	if(qArr == undefined){
+		qArr = arr.slice();
 	}
 
 	if(len<2){
-		return;
+		return arr;
 	}
 	if(len == 2 && arr[0] == arr[1]){
-		return;
+		return arr;
 	}
-	tag = backupArr[a];
+	tag = qArr[a];
 
-	for (var i = 1,tagIndex = 0; i < len;) {
+	for (i = 1,k = 0; i < len;) {
 
 
-		if(backupArr[a+i]>=tag){
-			rightArr.push(backupArr[a+i]);
+		if(qArr[a+i]>=tag){
+			rightArr.push(qArr[a+i]);
 			i++;
 
 		}else{
-			var temp = backupArr[a+i];
-			for(var j = a+i;j>a+tagIndex;j--){
+			temp = qArr[a+i];
+			for(j = a+i;j>a+k;j--){
 				
-				backupArr[j] = backupArr[j-1];
-				// this.pushHis(backupArr.slice(),a,b,a+tagIndex);
+				qArr[j] = qArr[j-1];
+				// this.pushHis(qArr.slice(),a,b,a+k);
 			}
-			backupArr[a+tagIndex] = temp;
+			qArr[a+k] = temp;
 			leftArr.push(temp);
-			tagIndex++;
+			k++;
 			i++;
-
 		}
-		this.pushHis(backupArr.slice(),a,b,a+tagIndex,i-1);
+		this.pushHis(qArr.slice(),a,b,a+k,i-1);
 	}
 
 
-	var len_l = leftArr.length;
-	var len_r = rightArr.length;
+	len_l = leftArr.length;
+	len_r = rightArr.length;
 	if(len_l== 0){
-		var lb = a;
+		lb = a;
 	}else{
-		var lb = a+len_l -1;
-		this.sort(leftArr,a,lb,backupArr);
+		lb = a+len_l -1;
+		this.sort(leftArr,a,lb,qArr);
 	}
 
 	if(len_r == 0){
-		var ra = b;
+		ra = b;
 	}else{
-		var ra = b + 1 - len_r;
-		this.sort(rightArr,ra,b,backupArr)
+		ra = b + 1 - len_r;
+		this.sort(rightArr,ra,b,qArr)
 	}
-
+	return qArr;
 }
 
+
+/*
+*  arr:数组
+*  a:标记本轮插入排序的开始位。
+*  b:标记本轮插入排序的结束位。
+*  tag:当前中间值运行到哪一位i.
+*  k:当前在对比的序号;当前对比到哪一位。
+*/
+
+
 function quickSortDom2(arr,a,b,tag,k){
-	$(".sort_ul").empty();
-	var html='',item= '';
-	$.each(arr, function(i, val) {
-		item = '<li class="sort_li"><span class="sort_span" style="height: '+val+'%"></span></li>';
+
+	var html='',item= '',len = arr.length,i;
+	for (i = 0; i < len; i++) {
+
+		spanClass = 'sort_span';
+
+		if(a<=i && i<=b){
+			spanClass += ' sort_span_blue';
+		}
+
+		if(i == tag){
+			spanClass += ' sort_span_tag';
+		}
+		if(i == a+k){
+			item = 	'<li class="sort_li"><span class="'+ spanClass +'" style="height: '+arr[i]+'%"></span><span class="sort_span_in" style="height:'+arr[tag]+'%"></span></li>';
+		}else{
+			item = '<li class="sort_li"><span class="'+ spanClass +'" style="height: '+arr[i]+'%"></span></li>';
+		}
+
 		html= html+item;
-	});
-	$(".sort_ul").append(html);
-
-	var len = $(".sort_span").length;
-	for (var i = a; i <= b; i++) {
-		$(".sort_span").eq(i).addClass('sort_span_blue');
 	}
+	document.querySelector('.sort_ul').innerHTML = html;
 
-	$(".sort_span").eq(tag).addClass('sort_span_tag');
-	$(".sort_span").eq(a+k).parent().append('<span class="sort_span_in" style="height:'+arr[tag]+'%"></span>');
 
 }
