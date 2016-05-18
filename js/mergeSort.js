@@ -1,5 +1,5 @@
-function mergeSort(arr){
-	var len= arr.length,arrleft=[],arrright =[],gap=1,maxgap=len-1,gapArr=[],glen,n=0;
+function mergeSort(oriArr){
+	var arr=oriArr.slice(),len= arr.length,gap=1,maxgap=len-1,gapArr=[],glen,n=0;
 	var that = this;
 	while(gap<maxgap){  
 		gap = Math.pow(2,n);  
@@ -12,12 +12,9 @@ function mergeSort(arr){
 	for (var i = 0; i < glen; i++) {  
 		gap = gapArr[i];  
 		for (var j = 0; j < len; j=j+gap*2) {
-			// s1(arr,j,j+gap*2-1,gap);
 			s1.call(this,arr,j,j+gap*2-1,gap);//借用方法。其实是为了传递this。
 		}  
 	}
-
-
 }
 
 
@@ -26,18 +23,14 @@ function mergeSort(arr){
 function s1(arr,a,b,n){
 
 	var len = arr.length;
+	var rn;//右边数组的长度。
+	var n;
 
-	if(len<2){
-		return;
-	}
-	if(n == 0){
-		return;
-	}
-	if(b - a + 1  == n){
-		return;
+	if(len<2 || n == 0 || b - a + 1 == n){
+		return arr;
 	}
 
-	if(b>len-1){
+	if(b>len-1){//归并时后面一个数组的b可能超出数组。因为它是加的gap*2。这时要让这个b标识到整个数组最后一位去。
 		b = len -1;
 	}
 	rn = b - a +1  - n;
@@ -69,34 +62,40 @@ function s1(arr,a,b,n){
 
 }
 
+/*
+*  arr:数组
+*  a:左边数组比较到哪一位。
+*  b:右边数组比较到哪一位。
+*  c:标记本轮插入排序的开始位。
+*  d:标记本轮插入排序的结束位。
+*  tag:当前在对比的序号;循环中的k
+*  temp:当前在找位的值;
+*/
 
 function mergeSortDom(arr,a,b,c,d,tag,temp){
-	$(".sort_ul").empty();
-	var html='',item= '';
-	var len = arr.length;
-	$.each(arr, function(i, val) {
-		item = '<li class="sort_li"><span class="sort_span" style="height: '+val+'%"></span></li>';
-		html= html+item;
-	});
-	$(".sort_ul").append(html);
-
-	//表示当前正在排序的。
-	for (var i = c; i <= d; i++) {
-		$(".sort_span").eq(i).addClass('sort_span_blue');
+	var html='',item= '',len = arr.length,i;
+	if(a == b){
+		a = a-1;
 	}
+	for (i = 0; i < len; i++) {
 
+		spanClass = 'sort_span';
 
-	// for (var i = c; i <= a; i=i+gap) {
-		//表示
-		if(a == b){
-			a = a-1;
+		if(c<=i && i<=d){
+			spanClass += ' sort_span_blue';
 		}
-		$(".sort_span").eq(a).addClass('sort_span_green');
-		$(".sort_span").eq(b).addClass('sort_span_green');
-		console.log(a,b);
-	// }
 
-	if(tag){
-		$(".sort_span").eq(tag).parent().append('<span class="sort_span_in" style="height:'+temp+'%"></span>');
+		if(i == a || i==b){
+			spanClass += ' sort_span_green';
+		}
+
+		if(tag && i == tag){
+			item = 	'<li class="sort_li"><span class="'+ spanClass +'" style="height: '+arr[i]+'%"></span><span class="sort_span_in" style="height:'+temp+'%"></span></li>';
+		}else{
+			item = '<li class="sort_li"><span class="'+ spanClass +'" style="height: '+arr[i]+'%"></span></li>';
+		}
+		html= html+item;
 	}
+	document.querySelector('.sort_ul').innerHTML = html;
+
 }
