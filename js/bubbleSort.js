@@ -7,12 +7,13 @@
 				for (j = 0; j < len-1; j++) {
 					temp = resArr[j];			
 					if(resArr[j+1]<resArr[j]){
+						this.pushHis(resArr.slice(),j);
 						temp = resArr[j]
 						resArr[j] = resArr[j+1];
 						resArr[j+1] = temp;
-						sortOk = false;
-						this.pushHis(resArr.slice(),j);
+						sortOk = false;					
 					}
+					this.pushHis(resArr.slice(),j);
 				}
 				if(sortOk == true){
 					break;
@@ -22,16 +23,16 @@
 		}
 
 		function bubbleSortDom(arr,j){
-			var html='<ul class="sort_ul">',item= '';
-			$.each(arr, function(i, val) {
-				if(i == j || i == j+1){
-					item = '<li class="sort_li"><span class="sort_span sort_span_blue" style="height: '+val+'%"></span></li>';
+			var html='',item= '',len = arr.length,i;
+			for (i = 0; i <len; i++) {
+				if(i == j+1 || i == j){
+					item = '<li class="sort_li"><span class="sort_span sort_span_blue" style="height: '+arr[i]+'%"></span></li>';
 				}else{
-					item = '<li class="sort_li"><span class="sort_span" style="height: '+val+'%"></span></li>';
+					item = '<li class="sort_li"><span class="sort_span" style="height: '+arr[i]+'%"></span></li>';
 				}				
 				html= html+item;
-			});
-			html = html+ '</ul>';
-			$(".sort_ul").replaceWith(html);
+			}
+
+			document.querySelector('.sort_ul').innerHTML = html;
 		}
 

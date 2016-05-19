@@ -9,8 +9,8 @@
 
 function insertSortDom(arr,a,b,temp){
 
-	var html='<ul class="sort_ul">',item= '',spanClass='';
-	$.each(arr, function(i, val) {
+	var html='',item= '',spanClass='',len = arr.length,i;
+	for (i = 0; i <len; i++) {
 
 		spanClass = 'sort_span';
 
@@ -18,17 +18,16 @@ function insertSortDom(arr,a,b,temp){
 			spanClass += ' sort_span_blue';
 		}
 
-		item = '<li class="sort_li"><span class="'+ spanClass +'" style="height: '+val+'%"></span></li>';
+		item = '<li class="sort_li"><span class="'+ spanClass +'" style="height: '+arr[i]+'%"></span></li>';
 
 		if(i == b){
-		item = 	'<li class="sort_li"><span class="'+ spanClass +'" style="height: '+val+'%"></span><span class="sort_span_in" style="height:'+temp+'%"></span></li>';
+		item = 	'<li class="sort_li"><span class="'+ spanClass +'" style="height: '+arr[i]+'%"></span><span class="sort_span_in" style="height:'+temp+'%"></span></li>';
 		}
 		
 		html= html+item;
-	});
-	html += '</ul>';
+	}
 
-	$(".sort_ul").replaceWith(html);
+	document.querySelector('.sort_ul').innerHTML = html;
 
 }
 
@@ -43,7 +42,7 @@ function insertSort(oriArr){
 		for (j=i-1; j >-1; j--) {
 			if(arr[j]>temp){
 				arr[j+1] = arr[j];
-				this.pushHis(arr.slice(),i,j+1,temp);
+				this.pushHis(arr.slice(),i-1,j+1,temp);
 			}else{
 				break;
 			}

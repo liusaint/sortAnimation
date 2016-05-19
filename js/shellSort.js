@@ -46,8 +46,8 @@ function shellSort(oriArr){
 				temp = arr[i];
 				for (j=i-gap; j >-1; j=j-gap) {
 					if(arr[j]>temp){
-						arr[j+gap] = arr[j];
-						this.pushHis(arr.slice(),i,j,k,temp,gap);	
+						this.pushHis(arr.slice(),i,j,k,temp,gap);
+						arr[j+gap] = arr[j];							
 					}else{
 						break;
 					}

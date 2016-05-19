@@ -10,7 +10,7 @@ function selectSort(oriArr){
 				temp = arr[j];
 				k = j;
 			}
-			this.pushHis(arr.slice(),i,j,k,temp);
+			this.pushHis(arr.slice(),i-1,j,k,temp);
 		}
 		arr[k] = arr[i];
 		arr[i] = temp;
@@ -29,8 +29,8 @@ function selectSort(oriArr){
 
 function selectSortDom(arr,a,b,c,temp){
 
-	var html='<ul class="sort_ul">',item= '',spanClass='';
-	$.each(arr, function(i, val) {
+	var html='',item= '',spanClass='',len = arr.length,i;
+	for (i = 0; i <len; i++) {
 
 		spanClass = 'sort_span';
 
@@ -42,13 +42,12 @@ function selectSortDom(arr,a,b,c,temp){
 		}
 
 		if(i == b){
-			item = 	'<li class="sort_li"><span class="'+ spanClass +'" style="height: '+val+'%"></span><span class="sort_span_in" style="height:'+temp+'%"></span></li>';
+			item = 	'<li class="sort_li"><span class="'+ spanClass +'" style="height: '+arr[i]+'%"></span><span class="sort_span_in" style="height:'+temp+'%"></span></li>';
 		}else{
-			item = '<li class="sort_li"><span class="'+ spanClass +'" style="height: '+val+'%"></span></li>';
+			item = '<li class="sort_li"><span class="'+ spanClass +'" style="height: '+arr[i]+'%"></span></li>';
 		}
 
 		html= html+item;
-	});
-	html+='</ul>';
-	$(".sort_ul").replaceWith(html);
+	}
+	document.querySelector('.sort_ul').innerHTML = html;
 }

@@ -15,6 +15,7 @@ function mergeSort(oriArr){
 			s1.call(this,arr,j,j+gap*2-1,gap);//借用方法。其实是为了传递this。
 		}  
 	}
+	return arr;
 }
 
 
@@ -46,8 +47,8 @@ function s1(arr,a,b,n){
 		}else{
 			temp = arr[j];
 			for(var k = j;k>i;k--){
-				arr[k] = arr[k-1];
 				this.pushHis(arr.slice(),i,j,a,b,k,temp);
+				arr[k] = arr[k-1];				
 			}
 			arr[i] = temp;
 			j++;

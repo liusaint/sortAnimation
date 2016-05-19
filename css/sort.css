@@ -3,6 +3,9 @@
 		margin: 0;
 		padding: 0;
 	}
+	input[type=button]{
+		cursor: pointer;
+	}
 	.sort_ul{
 		border: 1px solid #ccc;
 		height: 350px;
@@ -38,4 +41,10 @@
 		position: absolute;
 		top: 0;
 
+	}
+
+	.sorting_btn{
+		background-color: green;
+		color: #fff;
+		border: 1px solid green;
 	}
