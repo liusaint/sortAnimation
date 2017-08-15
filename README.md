@@ -1,5 +1,5 @@
 # sortAnimation
-JavaScript动画展示常见排序算法
+**JavaScript动画展示常见排序算法 2016年6月**
 
 演示地址：http://runningls.com/demos/2016/sortAnimation
 
